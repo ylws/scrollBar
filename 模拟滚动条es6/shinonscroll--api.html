@@ -1,0 +1,95 @@
+<html>
+	<body>
+		<style type="text/css">
+			*{
+				background: rgba(0,0,0,0.5);
+				font-size: 14px;
+				font-family: "arial, helvetica, sans-serif";
+				color: #fff;
+				float: left;
+				margin: 0;
+				padding: 0;
+				width: 100%;
+			}
+			b{
+				background: none;
+				font-size: 16px;
+				color: blanchedalmond;
+				margin: 10px 0;
+			}
+		</style>
+
+
+<b>参数项：<b>
+<pre>
+	$().shineonScroll({
+		"father": "scrollfather1", //当前区域id
+		"soncontent": "scrollson", //当前区域子元素样式表
+		"scroll_y": "scroll_y", //模拟滚动条y轴背景样式
+		"scroll_ymove": "scroll_ymove", //模拟滚动条y轴滚动条背景样式
+		"scroll_x": "scroll_x", //模拟滚动条y轴背景样式
+		"scroll_xmove": "scroll_xmove", //模拟滚动条x轴滚动条背景样式
+		"wheelxory": "wheely", //滚动类型wheelx轴，wheely轴
+		"wheelval": 0, //滑轮上下滚动的值，1位向下，-1位向上
+		"marginstep": 10, //步长,请使用数字，true为自动
+		"marginstepbole": 8, //步长,请使用数字，true为自动 ，触屏设备内嵌浏览器处理
+		"getfatherid": "whichscroll", //获取当前滚动区域模块id的隐藏域id
+		"scrolltop": "top",//top/bottom 初始化滚动条居顶、居底
+		"resetinit": 0, //0代表不做处理，1代表重置 重置wheelx or wheely的left/top值
+		"scrolltarget": ".scrollfather", //鼠标滑动，标记父元素
+		"smscrollfnprev": "phone_", //手机端滚动回调方法前缀
+		"boleonclick": false, //触屏设备在终端chrome浏览器,强制转到touch监听,并添加滚轮监听
+		"scrollbottomfn": "topmax" //top值滚动到底部
+	})
+</pre>
+<!--topmax  回调处理
+	var count = 0;
+			function topmax(scrollobj){
+				var listlen = $("#scrollfather1 .scrollson .lists").length;
+				if(listlen>=jsoncallback.length){
+					count = 0;
+					if($("#scrollfather1").attr("message")=="1"){
+						return false;
+					}
+					$("#scrollfather1").attr("data-message","没有更多数据了...").attr("message","1");
+					setTimeout(function(){
+						$("#scrollfather1").attr("data-message","");
+					},1500)
+					return false;
+				}
+				count++;
+				if(count <=1){
+					if(listlen!=jsoncallback.length){
+						if(scrollobj){
+							detail(jsoncallback,listlen+pageval,scrollobj);
+							count = 0;
+						}else{
+							detail(jsoncallback,listlen+pageval);
+							count = 0;
+						}	
+					}
+				}
+			}
+-->
+
+<b>模拟滚动条<b>
+
+<pre>
+&lt;div class="scrollfather" id="scrollfather1" &gt;
+	&lt;div class="scrollson" &gt;
+
+	&lt;/div&gt;
+	&lt;div class="scroll_ymove"&gt;
+		&lt;div class="scroll_y" unorbind="unbind"&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class="scroll_xmove"&gt;
+		&lt;div class="scroll_x" unorbind="unbind"&gt;&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+	
+$().shineonScroll({"father":"scrollfather1"});
+</pre>
+
+
+	</body>
+</html>
